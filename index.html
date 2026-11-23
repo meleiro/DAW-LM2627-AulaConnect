@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AulaConnect - Formación online</title>
+</head>
+<body>
+    <a href="#contenido">Saltar al contenido</a>
+    <header>
+        <h1>AulaConnect</h1>
+        <p>Tu plataforma de formación online</p>
+        <nav aria-label="Navegación principal">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#inscripcion">Inscripción</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main id="contenido">
+        <section id="inicio">
+            <h2>Aprende con nosotros</h2>
+            <p>Descubre nuestros cursos de programación, desarrollo web y ciberseguridad.</p>
+        </section>
+        <section id="cursos">
+            <h2>Catálogo de cursos</h2>
+            <!-- GET: los valores de los controles con name se incorporan a la URL. -->
+            <form action="index.html" method="get">
+                <p>
+                    <label for="buscar">Buscar curso:</label>
+                    <input type="search" id="buscar" name="buscar" value="">
+                </p>
+                <p>
+                    <label for="categoria">Categoría:</label>
+                    <select id="categoria" name="categoria">
+                        <option value="">Todas las categorías</option>
+                        <option value="programacion">Programación</option>
+                        <option value="web">Desarrollo web</option>
+                        <option value="seguridad">Ciberseguridad</option>
+                    </select>
+                </p>
+                <button type="submit">Buscar</button>
+            </form>
+            <h3>Cursos disponibles</h3>
+            <article><h4>Introducción a Python</h4><p>Categoría: Programación</p><p>Duración: 40 horas</p></article>
+            <article><h4>Desarrollo web con HTML5</h4><p>Categoría: Desarrollo web</p><p>Duración: 30 horas</p></article>
+            <article><h4>Fundamentos de ciberseguridad</h4><p>Categoría: Ciberseguridad</p><p>Duración: 50 horas</p></article>
+            <article><h4>Bases de datos con PostgreSQL</h4><p>Categoría: Programación</p><p>Duración: 45 horas</p></article>
+            <article><h4>Programación de aplicaciones Android</h4><p>Categoría: Programación</p><p>Duración: 60 horas</p></article>
+        </section>
+        <section id="inscripcion">
+            <h2>Formulario de inscripción</h2>
+            <!-- POST: se envía en el cuerpo de la petición. Esta ruta requiere un servidor. -->
+            <!-- Para subir un archivo con un servidor, se utiliza enctype="multipart/form-data". -->
+            <form id="formInscripcion" action="/inscripciones" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Datos personales</legend>
+                    <p><label for="nombre">Nombre:</label> 
+                        <input type="text" id="nombre" name="nombre" minlength="3" maxlength="30" required></p>
+                    <p><label for="apellidos">Apellidos:</label> <input type="text" id="apellidos" name="apellidos"></p>
+                    <p><label for="email">Correo electrónico:</label> <input type="email" id="email" name="email"></p>
+                    <!-- Campo didáctico: usar únicamente contraseñas ficticias. -->
+                    <p><label for="password">Contraseña de acceso:</label> <input type="password" id="password" name="password" autocomplete="new-password"></p>
+                    <p><label for="telefono">Teléfono:</label> <input type="tel" id="telefono" name="telefono"></p>
+                    <p><label for="web">Página web personal:</label> <input type="url" id="web" name="web" placeholder="https://ejemplo.com"></p>
+                    <!-- Sesión 3: añadir código postal y estudiar pattern, title e inputmode. -->
+                    <p><label for="cp">CP: </label>
+                    <input type="text" id="cp" name="cp" pattern="[0-9]{5}" title="Introduce un cp de 5 cifras" inputmode="numeric"></p> 
+                    <p><label for="dni">DNI: </label><input type="text" id="dni" name="dni" pattern="^[0-9]{8}[A-Za-z]$"></p> 
+                </fieldset>
+                <fieldset>
+                    <legend>Datos del curso</legend>
+                    <p>
+                        <label for="curso">Curso:</label>
+                        <!-- SESIÓN 2: optgroup organiza las opciones, pero no es seleccionable. -->
+                        <select id="curso" name="curso" required>
+                            <option value="">Selecciona un curso</option>
+                            <optgroup label="Programación">
+                                <option value="python">Introducción a Python</option>
+                                <option value="postgresql">Bases de datos con PostgreSQL</option>
+                                <option value="android">Programación de aplicaciones Android</option>
+                            </optgroup>
+                            <optgroup label="Desarrollo web">
+                                <option value="html">Desarrollo web con HTML5</option>
+                            </optgroup>
+                            <optgroup label="Ciberseguridad">
+                                <option value="seguridad">Fundamentos de ciberseguridad</option>
+                            </optgroup>
+                        </select>
+                    </p>
+                    <!-- SESIÓN 2: radio comparte name para permitir una única elección. -->
+                    <fieldset>
+                        <legend>Modalidad</legend>
+                        <label><input type="radio" name="modalidad" value="online"> Online</label>
+                        <label><input type="radio" name="modalidad" value="presencial"> Presencial</label>
+                    </fieldset>
+                    <p>
+                        <!-- SESIÓN 2: date presenta un selector de fecha según el navegador. -->
+                        <label for="fechaInicio">Fecha de inicio preferida:</label>
+                        <input type="date" id="fechaInicio" name="fechaInicio">
+                    </p>
+                    <p>
+                        <!-- SESIÓN 2: number admite números; límites en la sesión 3. -->
+                        <label for="horas">Horas de estudio semanales:</label>
+                        <input type="number" id="horas" name="horas" min="1" max="40" step="2">
+                    </p>
+                    <p>
+                        <!-- SESIÓN 2: range representa un valor en un control deslizante. -->
+                        <label for="nivel">Nivel de conocimientos (0 a 10):</label>
+                        <input type="range" id="nivel" name="nivel" min="0" max="10" value="5">
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>Preferencias e información adicional</legend>
+                    <p>
+                        <!-- SESIÓN 2: color permite escoger un color. -->
+                        <label for="colorPerfil">Color para el perfil:</label>
+                        <input type="color" id="colorPerfil" name="colorPerfil" value="#3366cc">
+                    </p>
+                    <p>
+                        <!-- SESIÓN 2: file selecciona un archivo; accept orienta la selección. -->
+                        <label for="justificante">Justificante PDF (opcional):</label>
+                        <input type="file" id="justificante" name="justificante" accept=".pdf,application/pdf">
+                    </p>
+                    <fieldset>
+                        <legend>Temas de interés (puedes marcar varios)</legend>
+                        <!-- SESIÓN 2: checkbox permite selecciones independientes. -->
+                        <label><input type="checkbox" name="intereses" value="programacion"> Programación</label>
+                        <label><input type="checkbox" name="intereses" value="web"> Desarrollo web</label>
+                        <label><input type="checkbox" name="intereses" value="seguridad"> Ciberseguridad</label>
+                    </fieldset>
+                    <p>
+                        <label for="comentarios">Comentarios:</label>
+                    </p>
+                    <textarea id="comentarios" name="comentarios" rows="5"></textarea>
+                    <p><label><input type="checkbox" name="condiciones" value="aceptadas"> Acepto las condiciones</label></p>
+                </fieldset>
+                <p>
+                    <button type="submit">Enviar inscripción</button>
+                    <button type="reset">Limpiar formulario</button>
+                    <button type="button" id="ayuda">Mostrar ayuda</button>
+                </p>
+            </form>
+            <h3>Resultado de la inscripción</h3>
+            <p id="resultado" role="status"></p>
+        </section>
+    </main>
+    <footer><p>AulaConnect - Proyecto educativo HTML5</p></footer>
+</body>
+</html>
